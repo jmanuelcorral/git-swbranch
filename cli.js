@@ -8,8 +8,9 @@ const [,, ... args] = process.argv
 var inquirer = require('inquirer');
 var git = require('simple-git');
 
-var localBranches = [];
+
 git().branchLocal((errors, branchSummary) => {
+    console.log(JSON.stringify(branchSummary));
     console.log(`Current Branch ${branchSummary.current}`);
     inquirer.prompt([
         {
@@ -22,9 +23,9 @@ git().branchLocal((errors, branchSummary) => {
             }
         }
     ]).then(answers => {
-        console.log('\nBranch Selected:');
-        git().checkoutBranch(answers.branch, startPoint, () => {});
-        console.log(JSON.stringify(answers, null, '  '));
+        //Esto es solo si la rama es nueva
+        git().checkout(answers.branch, () => {});
+        console.log(`Selected Branch: ${answers.branch} with starting point ${branchSummary.branches[answers.branch].commit}`);
     });
 
 });
