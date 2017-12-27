@@ -2,18 +2,17 @@
 
 const [,, ... args] = process.argv
 
-console.log(`arguments ${args}`)
+//console.log(`arguments ${args}`)
 
 'use strict';
 var inquirer = require('inquirer');
 var git = require('simple-git');
 
-localBhandler = function(listOfBranches){
-    console.log(listOfBranches);
-}
 
 var localBranches; 
-git().branchLocal(localBhandler);
+git().branchLocal((listOfBranches) => {
+    console.log(JSON.stringify(listOfBranches));
+});
 
 
 
