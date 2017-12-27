@@ -1,5 +1,5 @@
 {
-  "name": "git-switchbranch",
+  "name": "git-swbranch",
   "version": "1.0.0",
   "description": "An easy and interactive way to switch git branches in command line",
   "main": "index.js",
