@@ -10,7 +10,6 @@ var git = require('simple-git');
 
 
 git().branchLocal((errors, branchSummary) => {
-    console.log(JSON.stringify(branchSummary));
     console.log(`Current Branch ${branchSummary.current}`);
     inquirer.prompt([
         {
@@ -23,7 +22,6 @@ git().branchLocal((errors, branchSummary) => {
             }
         }
     ]).then(answers => {
-        //Esto es solo si la rama es nueva
         git().checkout(answers.branch, () => {});
         console.log(`Selected Branch: ${answers.branch} with starting point ${branchSummary.branches[answers.branch].commit}`);
     });
